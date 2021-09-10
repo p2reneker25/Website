@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <script language="javaScript">
+      function greeting(){
+        alert("You should prevent this page from creating additional dialogues.");
+      }//greeting() closing
+      function greeting1()
+      {
+          var rand=Math.round(Math.random());
+          alert(rand);
+        //I'm sorry for all the monty python...
+        alert("Stop, who would cross the Bridge of Death must answer me these questions three, ere the other side he see")
+        var name = prompt("What is your name?");
+        alert("Greetings, "+name)
+        var quest = prompt("What is your quest?")
+        if(rand == 0){
+          var question = prompt("What is the air-speed velocity of an unladen swallow? (in mph)")
+          if(question == "european or african?" || question == "European or African?" )
+          {
+            alert("What? I, I don't know that. AAAAAAAAAH")
+          }
+          else if (question == "24" || question == "21" ||question == "21.1"){
+            alert("Did you just look that up?")
+          }
+          else
+          {
+            alert("You are cast into the Gorge of Eternal Peril")
+          }
+        }
+        else{
+          var question = prompt("What is the capital of Assyria?")
+          if(question == "Assur" || question == "Nineveh" || question == "assur" || question == "nineveh")
+          {
+            alert("What? I, I don't know that. AAAAAAAAAH")
+          }
+          else
+          {
+            alert("You are cast into the Gorge of Eternal Peril")
+          }
+        }
+       
+      }//end of greeting1
+       
+        function greeting2()
+        {
+          var answer = confirm("Do you want to play a game?")
+          alert(answer)
+        }//end of greeting2
+        function guessing(){
+          var rand = Math.random()*1000+1;;
+          rand = parseInt(rand);
+          var attempts = 0;
+          var userInput = null;
+          while(userInput != rand){
+            userInput = prompt("Guess me nums! (1-1000)");
+            if(userInput < rand){
+              alert("Your number is too low");
+            }
+            else if(userInput > rand) {
+              alert("Your number is too high");
+            }
+            else if(userInput == "quit" || userInput == "Quit"){
+              break;
+            }
+            attempts += 1;
+          }
+          alert("You got the number! The number was "+rand +". You took "+attempts+" attempts. ");
+
+          var playAgain = confirm("Do you want to play again?")
+          if (playAgain == true)
+          {
+            guessing();
+          }
+        }
+      </script>
+    <link href="style.css" rel="stylesheet"
+     type="text/css" />
+  </head>
+  <body>
+    <center>
+    <h1> Javascript page...</h1>
+    </center>
+    <a href="index.html"> Back </a> <br><br>
+    <hr/>
+    <input type="button" value="Play my guessing game" onclick="guessing()"/>
+    <input type="button" value="Click me" onclick="greeting()" /> <br>
+    <hr/>
+    <input type="button" value="Click to give away personal information" onclick="greeting1()" /> <br>
+    <hr/>
+    <input type="button" value="Don't click this" onclick="greeting2()" /> <br>
+  </body>

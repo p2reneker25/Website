@@ -1,5 +1,15 @@
 /*Stylesheet*/
 
+
+/*Typewriter font*/
+@font-face {
+    font-family: 'Tox Typewriter';
+    src: url('Fonts/ToxTypewriter.woff2') format('woff2'),
+        url('Fonts/ToxTypewriter.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 /*Pink Floyd Font*/
 @font-face {
     font-family: 'Jayadhira LILA EE 0.1';
@@ -13,22 +23,13 @@
     font-style: normal;
     font-display: swap;
 }
-/*Typewriter font*/
-@font-face {
-    font-family: 'Tox Typewriter';
-    src: url('Fonts/ToxTypewriter.woff2') format('woff2'),
-        url('Fonts/ToxTypewriter.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
 
 /*Pink Floyd the Wall-paper*/
 body {
-  font-family: 'Jayadhira LILA EE 0.1', Fallback, sans-serif;
+  font-family: 'Jayadhira LILA EE 0.1', Fallback, "Tox Typewriter";
  background-image: url("images/background2.jpg");
  background-color: #FFFFFF;
- background-size:auto 7% ;
+ background-size: auto 15% ;
 }
 
 
