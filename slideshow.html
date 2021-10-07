@@ -1,0 +1,90 @@
+<html>
+<head>
+  <link href="style.css" rel="stylesheet" type="text/css"/>
+<script language="JavaScript">
+
+  var picList=[
+   "images/slideshow/slide1coupler.jpg",
+   "images/slideshow/slide2floppy.jpg", 
+   "images/slideshow/slide3hdd.jpg", 
+   "images/slideshow/slide4crt.jpg", 
+   "images/slideshow/slide5dos.jpg", 
+   "images/slideshow/slide6printer.jpg"]
+  var sounds=[
+  "sounds/slide1.mp3", 
+  "sounds/slide2.mp3", 
+  "sounds/slide3.mp3", 
+  "sounds/slide4.mp3", 
+  "sounds/slide5.mp3", 
+  "sounds/slide6.mp3",]
+  var slideTime=[12000,12000,20000,3000,3000,12000]
+  var image = 1
+  var timer;
+  var startTimer = false;  
+
+function run(){
+  //alert("run")
+  if(startTimer == false)
+  {
+    startTimer = true;
+    document.getElementById("runButton").value = "Pause"
+  }
+  else
+  {
+    startTimer = false;
+    document.getElementById("runButton").value = "Be Lazy"
+
+  }
+  autoRun();
+
+}
+function autoRun()
+{
+  if(startTimer == true)
+  {
+    document.getElementById("display").src=picList[image];
+    increment();
+    timer = setTimeout("autoRun()", slideTime[image])
+
+  }
+  else{
+    document.getElementById("player").pause();
+
+    clearTimeout(timer)
+  }
+}
+function increment(){
+  if(image == picList.length-1){ 
+    image = 0
+    document.getElementById("player").src=sounds[image];
+    document.getElementById("player").play();
+    slideTime = document.duration
+    document.getElementById("display").src=picList[image];
+  }
+else{
+    
+    image +=1
+    document.getElementById("display").src=picList[image];
+    document.getElementById("player").src=sounds[image];
+    document.getElementById("player").play(); 
+
+  }
+}
+function next(){
+  increment();
+}
+</script>
+</head>
+<body>
+<center>
+<h1>Vintage Computing</h1>
+Click<a href="index.html"> here </a>to go back to home page
+<br> <br>
+<img src="images/slideshow/slide1coupler.jpg" id="display"/>
+<br>
+<input type = "button" value="Next Picture" onclick="next()"/>
+<input type = "button" value="Be Lazy" onclick="run()" id="runButton"/>
+<audio id="player"></audio>
+</center>
+</body>
+</html>

@@ -10,6 +10,14 @@
     font-style: normal;
     font-display: swap;
 }
+/*Punch Label*/
+@font-face {
+    font-family: 'Punch Label';
+    src: url('Fonts/PunchLabel.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 /*Pink Floyd Font*/
 @font-face {
     font-family: 'Jayadhira LILA EE 0.1';
@@ -26,7 +34,7 @@
 
 /*Pink Floyd the Wall-paper*/
 body {
-  font-family: 'Jayadhira LILA EE 0.1', Fallback, "Tox Typewriter";
+  font-family: 'Tox Typewriter', Fallback, "Tox Typewriter";
  background-image: url("images/background2.jpg");
  background-color: #FFFFFF;
  background-size: auto 15% ;

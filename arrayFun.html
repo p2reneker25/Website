@@ -1,0 +1,62 @@
+<html>
+<head>
+<script language="javaScript">
+var counter = 0;
+var bandMates=["John", "Paul", "George", "Ringo", "Tom"];
+var timer;
+var startTimer = false;
+//var myData=[1,2,3,4,5,6,7,8,9,10];
+function oneTime()
+{
+ //local variable
+  document.getElementById("names").value = bandMates[counter];
+  increment();
+}
+  //score goes bye-bye
+function run()
+{
+  if(startTimer == false)
+  {
+    startTimer = true;
+  }
+  else
+  {
+    startTimer = false;
+  }
+  autoDisplay();
+}
+
+function autoDisplay()
+{
+  if(startTimer == true)
+  {
+    document.getElementById("names").value = bandMates[counter];
+    increment();
+    timer = setTimeout("autoDisplay()", 1)
+  }
+  else{
+    clearTimeout(timer)
+  }
+}
+function increment(){
+  if(counter == bandMates.length -1){ 
+    counter = 0
+  }
+  else{
+    counter +=1
+  }
+}
+
+</script>
+</head>
+<body>
+<center>
+<h1> Fun with Arrays</h1>
+<input type="button" value="One Click" onclick="oneTime()"/>
+<br/><br/>
+<input type="button" value="Run" onclick="run()"/>
+<br/><br/>
+<input type="text" size=30 id="names"/>
+<br/><br/>
+</body>
+</html>
