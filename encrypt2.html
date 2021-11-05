@@ -1,0 +1,332 @@
+<html>
+<head>
+  <link href="style.css" rel="stylesheet"
+     type="text/css" />
+	<script language="javaScript">
+	
+	var alpha = [ "a", 
+	              "b",  
+	              "c",  
+	              "d",  
+	              "e",  
+	              "f",  
+	              "g",  
+	              "h",  
+	              "i",  
+	              "j",  
+	              "k",  
+	              "l",  
+	              "m",  
+	              "n",  
+	              "o",  
+	              "p",  
+	              "q",  
+	              "r",  
+	              "s",  
+	              "t",  
+	              "u",  
+	              "v",  
+	              "w",  
+	              "x",  
+	              "y",  
+	              "z",
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F",
+                "G",
+                "H",
+                "I",
+                "J",
+                "K",
+                "L",
+                "M",
+                "N",
+                "O",
+                "P",
+                "Q",
+                "R",
+                "S",
+                "T",
+                "U",
+                "V",
+                "W",
+                "X",
+                "Y",
+                "Z",
+                " ",
+                ".",
+                "!",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "8",
+                "9",
+                "0"                  
+				];
+
+        var scrambled = [ 
+                "1", 
+	              "q",  
+	              "a",  
+	              "z",  
+	              "2",  
+	              "w",  
+	              "s",  
+	              "x",  
+	              "3",  
+	              "e",  
+	              "d",  
+	              "c",  
+	              "4",  
+	              "r",  
+	              "f",  
+	              "v",  
+	              "5",  
+	              "t",  
+	              "g",  
+	              "b",  
+	              "6",  
+	              "y",  
+	              "h",  
+	              "n",  
+	              "7",  
+	              "u",
+                "j",
+                "m",
+                "8",
+                "i",
+                "k",
+                "9",
+                "o",
+                "l",
+                "0",
+                "p",
+                ".",
+                "!",
+                "Q",
+                "A",
+                "Z",
+                "W",
+                "S",
+                "X",
+                "E",
+                "D",
+                "C",
+                "R",
+                "F",
+                "V",
+                "T",
+                "G",
+                "B",
+                "Y",
+                "H",
+                "N",
+                "U",
+                "J",
+                "M",
+                "I",
+                "K",
+                "O",
+                "L",
+                "P",
+                " "];
+        
+	//FINISH SCRAMBLING!!
+	function secretMessage()
+	{
+		if(document.getElementById("unencrypt").value == "")// Unscrambled box empty
+    {
+      if(document.getElementById("encrypt").value == "")
+      { // Scrambled box are empty
+      alert("Both boxes are empty")
+      }
+      else
+      {
+        document.getElementById("unencrypt").value = code(false)
+      }
+    }
+    else // Data in first box
+    {
+      if(document.getElementById("encrypt").value == "")
+      {
+        document.getElementById("encrypt").value = code(true)
+        
+      }
+      else
+      {
+        alert("Both are full")
+
+      }
+    }
+    
+		//alert("I'm encrypting")
+  }
+  function code(mode)
+  {
+    var firstList;
+    var secondList;
+    var firstBox;
+    if(mode == true)
+    {
+      firstBox = document.getElementById("unencrypt").value
+      firstList = alpha
+      secondList = scrambled
+    }
+    else
+    {
+      firstList = scrambled
+      secondList = alpha
+      firstBox = document.getElementById("encrypt").value
+
+    }
+    numberList = new Array(firstBox.length)
+    var counter = 0;
+    while (counter < firstBox.length)
+    {
+      var letter = firstBox.substr(counter,1)
+      var letIndex = firstList.indexOf(letter)
+      numberList[counter] = letIndex 
+      counter +=1
+    }
+    counter = 0;
+    var answer = "";
+    while (counter<firstBox.length)
+    {
+      var letIndex = numberList[counter];
+      answer = answer + secondList[letIndex]
+      counter+=1
+    }
+    return answer;
+    
+  }
+  /*
+  function encrypt()
+  {
+    var firstBox = document.getElementById("unencrypt").value
+    numberList = new Array( firstBox.length)
+    var counter = 0;
+    while (counter < firstBox.length)
+    {
+      var letter = firstBox.substr(counter,1)
+      var letIndex = alpha.indexOf(letter)
+      numberList[counter] = letIndex 
+      counter +=1
+    }
+    //alert(numberList)
+    counter = 0;
+    var answer = "";
+    while (counter<firstBox.length)
+    {
+      var letIndex = numberList[counter];
+      answer = answer + scrambled[letIndex]
+      counter+=1
+    }
+    //alert(answer)
+    document.getElementById("encrypt").value = answer;
+    
+   // alert(numberList)
+    
+
+  }
+  */
+  function code(status)
+  {
+    var firstList;
+    var secondList;
+    var firstBox;
+    if(status == true)
+    {
+      var firstBox = document.getElementById("unencrypt").value
+      firstList = alpha
+      secondList = scrambled
+    }
+    else
+    {
+      firstList = scrambled
+      secondList = alpha
+      var firstBox = document.getElementById("encrypt").value
+
+    }
+    numberList = new Array( firstBox.length)
+    var counter = 0;
+    while (counter < firstBox.length)
+    {
+      var letter = firstBox.substr(counter,1)
+      var letIndex = firstList.indexOf(letter)
+      numberList[counter] = letIndex 
+      counter +=1
+    }
+    counter = 0;
+    var answer = "";
+    while (counter<firstBox.length)
+    {
+      var letIndex = numberList[counter];
+      answer = answer + secondList[letIndex]
+      counter+=1
+    }
+    return answer;
+    
+  }
+  /*
+  function decrypt()
+  {
+    var firstBox = document.getElementById("encrypt").value
+    numberList = new Array( firstBox.length)
+    var counter = 0;
+    while (counter < firstBox.length)
+    {
+      var letter = firstBox.substr(counter,1)
+      var letIndex = scrambled.indexOf(letter)
+      numberList[counter] = letIndex 
+      counter +=1
+    }
+    //alert(numberList)
+    counter = 0;
+    var answer = "";
+    while (counter<firstBox.length)
+    {
+      var letIndex = numberList[counter];
+      answer = answer + alpha[letIndex]
+      counter+=1
+    }
+
+    //alert(answer)
+    document.getElementById("unencrypt").value = answer;
+
+  }
+  */
+	function clearBoxes()
+	{
+		//alert("Clearing")
+    document.getElementById("encrypt").value=""
+    document.getElementById("unencrypt").value=""
+
+	}
+	
+	
+	</script>
+</head>
+<body class = "encrypt">
+	<center>
+		<h1>My Encryption App</h1>
+    Click <a href="index.html"> here</a> to go to index
+		<br/><br/>
+		<input type ="button" value="Encrypt/Decrypt" onClick="secretMessage()"/>
+		<input type ="button" value="Clear" onClick="clearBoxes()"/>
+		<br/><br/>
+		
+		Unencrypted Message
+		<input type = "text" size="40" id="unencrypt"/> 
+		
+		<br/><br/>
+	 Encrypted Message
+		<input type = "text" size="40" id="encrypt"/> 
+	</center>
+</body>
+</html>

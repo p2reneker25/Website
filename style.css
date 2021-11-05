@@ -36,8 +36,24 @@
 body {
   font-family: 'Tox Typewriter', Fallback, "Tox Typewriter";
  background-image: url("images/background2.jpg");
- background-color: #FFFFFF;
+ background-color: rgb(204, 204, 204);
  background-size: auto 15% ;
+}
+body.encrypt {
+background: url(images/old_paper.jpg);
+background-size: auto 60%
+}
+input[type="text"]
+{
+  background: transparent;
+  border-width: thin;
+  border-radius: 4px;
+  font-family: 'Tox Typewriter' !important;
+}
+input[type="button"]
+{
+  background: transparent;
+  border-radius: 3px;
 }
 
 

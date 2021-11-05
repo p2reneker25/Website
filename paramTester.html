@@ -1,0 +1,42 @@
+<html>
+<head> 
+  
+<script language = "javaScript">
+
+function doStuff()
+{
+  
+	var r = document.getElementById("myBox").value
+  document.getElementById("myBox").value = calculate(r)
+
+
+}
+/* 
+	1) What is a parameter? 
+  Information a function is given when it it called that it needs to do its job
+	2) What is a return? 
+  Something the function outputs when it is done running
+	3) Why might one function have a return, but another function does not? 
+  If the function does not need to return anything
+
+*/
+function calculate(radius)
+{
+  var answer = 3.14159265358979323846264338327950*radius*radius
+	return answer;
+}
+
+</script>
+</head>
+<body>
+<link href="style.css" rel="stylesheet"
+     type="text/css" />
+<center>
+<h1> Function Tester </h1>
+
+<input type="button" value="click me" onclick="doStuff()"/>
+
+<input type="text" size = 30 id="myBox"/>
+
+</center> 
+</html>
