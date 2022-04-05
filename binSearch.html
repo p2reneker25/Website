@@ -1,0 +1,139 @@
+<html>
+<head>
+<script language="javaScript">
+
+var myList;
+function begin()
+{
+ 	var j = prompt("How big a list should I make?");
+	j = parseInt(j);
+	myList = new Array(j);
+	for(var i = 0; i< myList.length; i++)
+	{
+		myList[i] = Math.floor(Math.random()*j);
+	}
+  	sorting();
+
+
+	
+}
+
+function sorting()
+{
+	for(var i = 0; i< myList.length-1; i++)
+	{
+		var minIndex = i;
+		for(var j = i+1; j<myList.length; j++)
+		{
+			if( myList[j]<myList[minIndex])
+			{
+				minIndex = j;
+			}
+		}
+		var temp = myList[i];
+		myList[i] = myList[minIndex];
+		myList[minIndex]= temp;
+
+	}
+	elimDuplicates();
+}
+
+
+function elimDuplicates(t)
+{
+	for(i=0; i<myList.length; i++)
+	{
+		if(myList[i] == myList[i+1])
+		{
+			myList.splice(i,1);
+			i--;
+		}
+	}
+	displayList();
+}
+
+function displayList()
+{
+	var answer = "";
+	for(var i = 0; i<myList.length-1; i++)
+	{
+		answer += myList[i];
+		answer+= ", ";
+	}
+	answer += myList[myList.length-1];
+	document.getElementById("listOnums").value = answer;
+}
+
+//function linearSearch()
+// {
+// 	alert("Hello");
+//   	var answer = "";
+// 	for(var i = 0; i<myList.length-1; i++)
+// 	{
+// 		answer += myList[i];
+// 		answer+= ", ";
+// 	}
+// 	answer += myList[myList.length-1];
+// 	document.getElementById("listOnums").value = answer;
+// }
+
+function linearSearch()
+{
+  var target = prompt("What number is the target?")
+	alert("linear");
+  var index = -1;
+  for(i = 0; i<myList.length; i++){
+    if(myList[i] == target){
+      index = i;
+      alert(index);
+      return -1;
+    }
+  }
+  if(index == -1){
+    alert("not in array.")
+  }
+}
+
+
+function binSearch()
+{
+	var target = prompt("What number should I find?");
+	var counter  = 0
+	var lo = 0; 
+	var hi=myList.length-1;  //highest index
+	var mid = Math.floor((lo+hi)/2); //finding midway of array
+	while(lo<=hi && myList[mid] != target) //checking if not target and still working through list 
+	{
+    counter++
+		if(myList[mid] < target) //checking if less than target
+			lo = mid+1; //setting new bottom of register
+		else  // greater than target
+			hi = mid-1; //setting new top of register
+		mid = Math.floor((lo+hi)/2); //finding new middle
+	}
+		
+	if( lo > hi) //
+		alert("Target not in list.");
+	else 
+		alert("Target is at index "+mid+".");
+	alert("It took "+counter+" times through the loop")
+	
+}
+
+
+</script>
+</head>
+<body onload = "begin()">
+<h1> Binary Search! </h1>
+
+<center>
+
+<input id="listOnums" type="text" size = 40/>
+<br/>
+<input type = "button" value = "Start Linear Search!" onclick="linearSearch()"/>
+<input type = "button" value = "Start Binary Search!" onclick="binSearch()"/>
+</center>
+
+</body>
+</html>
+
