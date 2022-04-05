@@ -1,0 +1,114 @@
+<html>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<head>
+</head>
+<body>
+	<center>
+		<h1>Cat Quiz</h1>
+		<a href = "index.html"> Click here to go back home</a>
+		<br/> <br/>
+		<input type="radio" id="terms" name="qType" onchange="restart()" checked>
+		<label for="terms">Words</label>
+		<input type="radio" id="defs" name="qType" on>
+		<label for="defs">Definitions</label>
+		<input type="button" value="Next" onclick="nextQ()" />
+
+		<br />
+		<p id="score">Score: 10</p>
+		<p id="clue">Question</p>
+
+		<!--onfocusout="checkAnswer()<-->
+		<input type="text" id="answer" size=40>
+		<br /><br />
+		<input type="button" value="Check Answer" onclick="checkAnswer()" />
+		<input type="button" id="clue" value="Admit to failure" onclick="displayClue()">
+		<br />
+		<p id="hint"> Hint</p>
+
+		<div id="image" style="visibility:hidden;"> <img id="picture" src="images/incorrect-no.gif" loop> </div>
+	</center>
+
+	<script language=JavaScript>
+var data = [
+	//Question, Answer, Clue
+	["When was the first cat video recorded?", "1894", "It was about boxing cats"],
+	["Where was a green cat born?", "Denmark", "Europe"],
+	["How many toes do cats have?", "18", "They have more on the front than in the back"],
+	["What temperature do cats prefer their food at?", "38", "Celsius"]
+];
+var asked = [false, false, false, false]
+var questionsAsked = -1;
+var winWidth = (window.innerWidth / 2) - 120;
+document.getElementById("image").style.left = winWidth;
+var random = -1;
+var counter = -1;
+var score = 0;
+var questionLocation = -1;
+var answerLocation = -1;
+var score = 0;
+document.getElementById("score").innerHTML = "Score: " + score;
+//document.getElementById("score").innerHTML = "Score: "+ score;
+function getUnusedIndex() {
+	if (asked[0] == true && asked[1] == true && asked[2] == true && asked[3] == true) {
+		endQuiz();
+	}
+	random = parseInt(Math.random() * data.length)
+	while (asked[random]) {
+		random = parseInt(Math.random() * data.length)
+		//getUnusedIndex()
+	}
+	asked[random] = true;
+	return random
+}
+function nextQ() {
+	counter = getUnusedIndex();
+	var checked = document.getElementById("terms").checked;
+	document.getElementById("picture").style.visibility = "hidden";
+	document.getElementById("answer").value = "";
+	document.getElementById("hint").value = "";
+	displayQuestion(checked)  
+}
+function displayQuestion(wordsOrDefs) {
+	//alert(wordsOrDefs) 
+	if (counter > data.length - 1) {
+		counter = 0;
+	}
+	if (wordsOrDefs) {
+		questionLocation = 0; //location of question
+		answerLocation = 1; //location of answer
+
+	} else {
+		questionLocation = 1; //location of question
+		answerLocation = 0; //location of answers
+	}
+	document.getElementById("clue").innerHTML = data[counter][questionLocation];
+}
+function checkAnswer() {
+	var answer = document.getElementById("answer").value
+	if (answer == data[counter][answerLocation]) {
+		//alert("yes")
+		document.getElementById("picture").src = "images/correct-yes.gif"
+		document.getElementById("picture").style.visibility = 'visible'
+		score += 5
+	} else {
+		//alert("no")
+		document.getElementById("picture").src = "images/incorrect-no.jpg"
+		document.getElementById("picture").style.visibility = 'visible'
+  	score -= 5
+	}
+	document.getElementById("score").innerHTML = "Score: " + score;
+}
+function displayClue() {
+	document.getElementById("hint").innerHTML = "Hint: " + data[counter][2]
+}
+
+function endQuiz() {
+	alert("Game over! Your score is: " + score + ". Perhaps trying the other mode?");
+	for (i = 0; i < asked.length; i++) {
+		asked[i] = false;
+	}
+  score = 0;
+}
+</script>
+</body>
+</html>
